@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Person</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Mavi Dev Proje</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Person</p>
+
+    <form action="#" th:action="@{/person/save}"
+       object method="POST">
+
+        <input type="text" size="20" name="name" required
+               class="form-control mb-4 col-4" placeholder="First name">
+
+        <input type="text" name="surname" required
+               class="form-control mb-4 col-4" placeholder="Last name">
+
+        <input type="email"  name = "email" required
+               class="form-control mb-4 col-4" placeholder="Email">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+        <br>
+
+        <p th:text =${description}></p>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/person/list}">Person List</a>
+    <hr>
+    <a th:href="@{/main}"> Main Menu</a>
+
+</div>
+</body>
+
+</html>
+
+
+

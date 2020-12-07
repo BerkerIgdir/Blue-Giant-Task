@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Search Person</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Mavi Dev Proje</h3>
+    <hr>
+    <p class="h4 mb-4">Search Person</p>
+
+    <form action="#" th:action="@{/person/searchByNameAndSurname}"
+          th:object="${queryObject}" method="POST">
+
+        <div style="display:flex; flex-direction: row; align-items: baseline">
+        <input type="text" id = "name" name= "name" th:field ="*{name}"
+              class="form-control mb-4 col-4" placeholder="First name">
+            <span style="margin:5px">    </span>
+        <button type="submit" class="btn btn-info col-2" formaction="searchByName">Search By Name</button>
+        </div>
+
+        <p  th:if="${#fields.hasErrors('name')}"  th:errors="*{name}"></p>
+
+        <div style="display:flex; flex-direction: row; align-items: baseline">
+        <input type="text" id = "surname" name= "surname" th:field="*{surname}"
+
+               class="form-control mb-4 col-4" placeholder="Last name">
+            <span style="margin:5px">    </span>
+        <button type="submit" class="btn btn-info col-2" formaction="searchBySurname">Search By Surname</button>
+        </div>
+
+        <p th:if="${#fields.hasErrors('surname')}"  th:errors="*{surname}">
+        Name Error
+        </p>
+        <button type="submit" class="btn btn-info col-2">Search By Name And Surname</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/person/list}">Person List</a>
+    <hr>
+    <a th:href="@{/main}"> Main Menu</a>
+
+
+</div>
+</body>
+
+</html>
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Error Page</title>
+</head>
+<body>
+
+<h1>
+    THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST !
+</h1>
+
+<div th:text=${msg}>
+
+</div>
+
+<a th:href="@{/main}"
+   class="btn btn-primary btn-sm mb-3">
+   Back To Main Menu
+</a>
+
+</body>
+</html>

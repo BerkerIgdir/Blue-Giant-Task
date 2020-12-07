@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Person Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Person Directory</h3>
+    <hr>
+
+    <!-- Add a button -->
+    <a th:href="@{/person/form}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Person
+    </a>
+    <a th:href="@{/main}"
+       class="btn btn-primary btn-sm mb-3">
+       Back to Main Menu
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempPerson : ${people}">
+
+            <td th:text="${tempPerson.name}" />
+            <td th:text="${tempPerson.surname}" />
+            <td th:text="${tempPerson.email}" />
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+
