@@ -3,10 +3,8 @@ package com.mavidev.task.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 //A dto for information transfer between client and server.
 //The dto will be immutable and stateless.
