@@ -45,6 +45,9 @@
         <p th:if="${#fields.hasErrors('surname')}"  th:errors="*{surname}">
         Name Error
         </p>
+
+        <p th:text="${combinedDescription}" ></p>
+
         <button type="submit" class="btn btn-info col-2">Search By Name And Surname</button>
     </form>
 

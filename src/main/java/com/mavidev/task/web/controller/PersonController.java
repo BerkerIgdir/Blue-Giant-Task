@@ -2,6 +2,7 @@ package com.mavidev.task.web.controller;
 
 
 import com.mavidev.task.dto.PersonDto;
+import com.mavidev.task.exception.PersonNotFoundException;
 import com.mavidev.task.mapper.PersonMapper;
 import com.mavidev.task.service.PersonService;
 import lombok.RequiredArgsConstructor;
@@ -74,6 +75,7 @@ public class PersonController {
         theModel.addAttribute("queryObject",new QueryClass());
         theModel.addAttribute("surnameDescription","");
         theModel.addAttribute("nameDescription","");
+        theModel.addAttribute("combinedDescription","");
         return "QueryForm";
     }
 
@@ -136,11 +138,21 @@ public class PersonController {
           return "QueryForm";
       }
 
-     PersonDto personDto = personService.getByNameAndSurname(queryClass.getName(),queryClass.getSurname());
+      try {
+          PersonDto personDto = personService.getByNameAndSurname(queryClass.getName(), queryClass.getSurname());
+          theModel.addAttribute("people",personDto);
 
-      theModel.addAttribute("people",personDto);
+          return "PersonTable";
+      }
+      catch (PersonNotFoundException e){
 
-        return "PersonTable";
+          theModel.addAttribute("queryObject",new QueryClass());
+          theModel.addAttribute("combinedDescription","Person you are looking for could not be found.");
+          return "QueryForm";
+
+      }
+
+
     }
 
 
