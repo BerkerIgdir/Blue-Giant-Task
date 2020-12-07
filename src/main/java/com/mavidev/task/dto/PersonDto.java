@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public final class PersonDto {
 
-    UUID id;
+    long id;
 
     String name;
     String surname;

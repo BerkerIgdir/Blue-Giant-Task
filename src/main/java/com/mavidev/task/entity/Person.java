@@ -28,9 +28,9 @@ public class Person {
 
     @Id
     @JsonIgnore
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-    UUID id;
+    Long id;
 
 
     @Column(length = 20,columnDefinition = "varchar(20)",nullable = false)
