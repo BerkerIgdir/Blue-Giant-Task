@@ -28,6 +28,7 @@
               class="form-control mb-4 col-4" placeholder="First name">
             <span style="margin:5px">    </span>
         <button type="submit" class="btn btn-info col-2" formaction="searchByName">Search By Name</button>
+            <span th:text=${nameDescription} style="margin:5px"> </span>
         </div>
 
         <p  th:if="${#fields.hasErrors('name')}"  th:errors="*{name}"></p>
@@ -38,6 +39,7 @@
                class="form-control mb-4 col-4" placeholder="Last name">
             <span style="margin:5px">    </span>
         <button type="submit" class="btn btn-info col-2" formaction="searchBySurname">Search By Surname</button>
+            <span th:text=${surnameDescription} style="margin:5px"> </span>
         </div>
 
         <p th:if="${#fields.hasErrors('surname')}"  th:errors="*{surname}">

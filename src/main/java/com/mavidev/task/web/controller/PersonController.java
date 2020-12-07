@@ -72,16 +72,30 @@ public class PersonController {
     public String personQuery(Model theModel){
 
         theModel.addAttribute("queryObject",new QueryClass());
-
+        theModel.addAttribute("surnameDescription","");
+        theModel.addAttribute("nameDescription","");
         return "QueryForm";
     }
 
     @PostMapping("/person/searchByName")
-    public String personSearchByName(@Valid @RequestParam("name") @NotBlank String name, Model theModel){
+    public String personSearchByName(@RequestParam("name") String name, Model theModel){
+
+        if(name.isEmpty()) {
+
+            theModel.addAttribute("queryObject", new QueryClass());
+            theModel.addAttribute("nameDescription","Name can not be empty!");
+            return "QueryForm";
+        }
 
         List<PersonDto> personDtoList = personService
                 .getAllByName(name,PageRequest.of(1,20))
                 .stream().collect(Collectors.toList());
+
+        if(personDtoList.isEmpty()) {
+            theModel.addAttribute("queryObject", new QueryClass());
+            theModel.addAttribute("nameDescription","Nobody could be found by this name.");
+            return "QueryForm";
+        }
 
         theModel.addAttribute("people",personDtoList);
 
@@ -89,11 +103,25 @@ public class PersonController {
     }
 
     @PostMapping("/person/searchBySurname")
-    public String personSearchBySurname(@RequestParam("surname")@NotBlank(message = "Can not be blank") String surname, Model theModel){
+    public String personSearchBySurname(@RequestParam("surname") String surname, Model theModel){
+
+        if(surname.isEmpty()) {
+            QueryClass queryObject = new QueryClass();
+            theModel.addAttribute("queryObject", queryObject);
+            theModel.addAttribute("surnameDescription","Surname can not be empty!");
+            return "QueryForm";
+        }
 
         List<PersonDto> personDtoList = personService
                 .getAllBySurname(surname,PageRequest.of(1,20))
                 .stream().collect(Collectors.toList());
+
+        if(personDtoList.isEmpty()) {
+            QueryClass queryObject = new QueryClass("",null);
+            theModel.addAttribute("queryObject", queryObject);
+            theModel.addAttribute("surnameDescription","Nobody could be found by this surname.");
+            return "QueryForm";
+        }
 
         theModel.addAttribute("people",personDtoList);
 
@@ -104,8 +132,6 @@ public class PersonController {
     public String personSearchByNameAndSurname(@Valid @ModelAttribute("queryObject") QueryClass queryClass, BindingResult bindingResult, Model theModel){
 
       if(bindingResult.hasErrors()) {
-
-          log.info("Validation error");
 
           return "QueryForm";
       }
